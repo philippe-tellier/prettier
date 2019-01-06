@@ -124,13 +124,13 @@ type State = {
 );
 
 =====================================output=====================================
-export type A =
+export type A = (
   | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;
+  | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb);
 
-export type B =
+export type B = (
   | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb;
+  | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb);
 
 export type C =
   | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -142,16 +142,16 @@ export type D =
 
 export type Multi = (string | number)[];
 
-function f(): string | number {}
+function f(): (string | number) {}
 
-var x: string | number;
-var y: string | number;
+var x: (string | number);
+var y: (string | number);
 
-class Foo<T extends string | number> {}
+class Foo<T extends (string | number)> {}
 
 interface Interface {
   i: (X | Y) & Z;
-  j: Partial<X | Y>;
+  j: Partial<(X | Y)>;
 }
 
 type State = {
