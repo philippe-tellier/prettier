@@ -240,7 +240,7 @@ function needsParens(path, options) {
       }
     }
     // fallthrough
-    case "TSTypeAssertionExpression":
+    case "TSTypeAssertion":
     case "TSAsExpression":
     case "LogicalExpression":
       switch (parent.type) {
@@ -255,7 +255,7 @@ function needsParens(path, options) {
         case "ClassDeclaration":
         case "TSAbstractClassDeclaration":
           return name === "superClass" && parent.superClass === node;
-        case "TSTypeAssertionExpression":
+        case "TSTypeAssertion":
         case "TaggedTemplateExpression":
         case "UnaryExpression":
         case "SpreadElement":
@@ -274,19 +274,19 @@ function needsParens(path, options) {
         case "AssignmentExpression":
           return (
             parent.left === node &&
-            (node.type === "TSTypeAssertionExpression" ||
+            (node.type === "TSTypeAssertion" ||
               node.type === "TSAsExpression")
           );
         case "Decorator":
           return (
             parent.expression === node &&
-            (node.type === "TSTypeAssertionExpression" ||
+            (node.type === "TSTypeAssertion" ||
               node.type === "TSAsExpression")
           );
 
         case "BinaryExpression":
         case "LogicalExpression": {
-          if (!node.operator && node.type !== "TSTypeAssertionExpression") {
+          if (!node.operator && node.type !== "TSTypeAssertion") {
             return true;
           }
 
@@ -528,7 +528,7 @@ function needsParens(path, options) {
         case "ExportDefaultDeclaration":
         case "AwaitExpression":
         case "JSXSpreadAttribute":
-        case "TSTypeAssertionExpression":
+        case "TSTypeAssertion":
         case "TypeCastExpression":
         case "TSAsExpression":
         case "TSNonNullExpression":
@@ -579,7 +579,7 @@ function needsParens(path, options) {
         case "LogicalExpression":
         case "BinaryExpression":
         case "AwaitExpression":
-        case "TSTypeAssertionExpression":
+        case "TSTypeAssertion":
           return true;
 
         case "ConditionalExpression":
@@ -686,6 +686,7 @@ function isStatement(node) {
     node.type === "ThrowStatement" ||
     node.type === "TryStatement" ||
     node.type === "TSAbstractClassDeclaration" ||
+    node.type === "TSDeclareFunction" ||
     node.type === "TSEnumDeclaration" ||
     node.type === "TSImportEqualsDeclaration" ||
     node.type === "TSInterfaceDeclaration" ||
